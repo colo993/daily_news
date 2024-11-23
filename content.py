@@ -1,28 +1,18 @@
-from datetime import datetime, timedelta
+from news import get_top_ten_articles
 
-from news import News
+FILE_NAME = 'daily_news.txt'
+topics = ['IMSA', 'FIA WEC', 'Fanatec GT World Challenge']
 
-yesterday = str((datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d"))
-print(yesterday)
-news = News(list_of_topics=['IMSA', 'FIA WEC'], from_date=yesterday)
-file_path = 'daily_news.txt'
-
-def create_file():
+def create_file_with_content():
     try:
-        with open(file_path, 'w') as file:
-            for i, all_articles in enumerate(news.get_top_ten_articles()):
-                file.write(f'News for topic {news.list_of_topics[i]}' + '\n')
-                for article in all_articles:
-                    title = news.get_title(article)
-                    file.write(f'Title: {title}' + '\n')
-                    description = news.get_description(article)
-                    file.write(f'Description: {description}' + '\n')
-                    url = news.get_url(article)
-                    file.write(f'Url: {url}' + '\n')
+        with open(FILE_NAME, 'w') as file:
+            for topic in topics:
+                file.write(f'<h1>News for topic {topic}</h1>' + '\n')
+                for article in get_top_ten_articles(topic):
+                    file.write(f'<b>Title</b>: {article['title']}' + '\n')
+                    file.write(f'<b>Description</b>: {article['description']}' + '\n')
+                    file.write(f'<b>Url</b>: {article['url']}' + '\n')
+                    file.write(f'<hr width="100%" size="1"')
                 file.write('\n')
     except IOError as e:
-        print(f"An error occurred: {e}")
-
-
-
-
+        print(f"Unable to open file: {FILE_NAME}")
