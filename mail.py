@@ -2,18 +2,24 @@ import os
 import yagmail
 
 from dotenv import load_dotenv
-from content import create_file
+
+from content import create_file_with_content
+
+EMAIL_USER = os.environ["EMAIL_USER"]
+EMAIL_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
+FILE_NAME = 'daily_news.txt'
 
 load_dotenv()
-
-create_file()
-email_user = os.environ["EMAIL_USER"]
-email_password = os.environ["GMAIL_APP_PASSWORD"]
+create_file_with_content()
 
 def send_email():
-    with open('daily_news.txt') as f:
-        message = f.read()
-    email = yagmail.SMTP(user=email_user, password=email_password)
+    try:
+        with open(FILE_NAME, 'r') as f:
+            message = f.read()
+    except IOError as e:
+        print(f"Unable to open file: {FILE_NAME}")
+
+    email = yagmail.SMTP(user=EMAIL_USER, password=EMAIL_PASSWORD)
     email.send(to="wakula993@gmail.com", subject="Test mail", contents=message)
 
 
