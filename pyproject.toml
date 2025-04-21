@@ -1,0 +1,70 @@
+[project]
+name = "daily-news"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "dotenv>=0.9.9",
+    "mypy>=1.15.0",
+    "newsapi-python>=0.2.7",
+    "ruff>=0.11.6",
+    "yagmail>=0.15.293",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E4", "E7", "E9", "F"]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = ["E501"]
+unfixable = ["F401", "B"]
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "tab"
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[[tool.mypy.overrides]]
+module = ["yagmail",
+          "dotenv", 
+          "newsapi",
+        ]
+ignore_errors = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
