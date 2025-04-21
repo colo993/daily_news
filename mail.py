@@ -17,7 +17,7 @@ def send_email():
 		with open(FILE_NAME, 'r') as f:
 			message = f.read()
 	except IOError as e:
-		print(f'Unable to open file: {FILE_NAME}')
+		print(f'Unable to open file: {FILE_NAME}.\nError: {e}')
 
 	email = yagmail.SMTP(user=EMAIL_USER, password=EMAIL_PASSWORD)
 	email.send(to='wakula993@gmail.com', subject='Test mail', contents=message)
