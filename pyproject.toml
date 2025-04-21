@@ -9,6 +9,8 @@ dependencies = [
     "dotenv>=0.9.9",
     "mypy>=1.15.0",
     "newsapi-python>=0.2.7",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
     "ruff>=0.11.6",
     "yagmail>=0.15.293",
 ]
@@ -64,6 +66,9 @@ docstring-quotes = "double"
 module = ["yagmail",
           "dotenv", 
           "newsapi",
+          "content",
+          "mail",
+          "news",
         ]
 ignore_errors = true
 ignore_missing_imports = true

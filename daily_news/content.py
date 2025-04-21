@@ -16,4 +16,4 @@ def create_file_with_content():
 					file.write('<hr width="100%" size="1"')
 				file.write('\n')
 	except IOError as e:
-		print(f'Unable to open file: {FILE_NAME}')
+		print(f'Unable to open file: {FILE_NAME}.\nError: {e}')
