@@ -8,9 +8,9 @@ load_dotenv()
 
 API_KEY = os.environ['API_KEY']
 NEWS_API = NewsApiClient(api_key=API_KEY)
-AMOUNT_OF_NEWS = 1
+AMOUNT_OF_NEWS = 10
 ORDER_OF_ARTICLES = 'relevancy'
-YESTERDAY = str((datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d'))
+YESTERDAY = str((datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d'))
 
 
 def get_top_ten_articles(topic: str) -> list:
