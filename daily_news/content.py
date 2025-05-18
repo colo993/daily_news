@@ -15,5 +15,5 @@ def create_file_with_content():
 					file.write(f'<b>Url</b>: {article["url"]}' + '\n')
 					file.write('<hr width="100%" size="1"')
 				file.write('\n')
-	except IOError as e:
+	except OSError as e:
 		print(f'Unable to open file: {FILE_NAME}.\nError: {e}')
