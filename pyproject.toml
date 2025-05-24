@@ -3,14 +3,21 @@ name = "daily-news"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = ["yagmail~=0.15.293", "newsapi-python~=0.2.7", "dotenv~=0.9.9"]
-[project.optional-dependencies]
+requires-python = "~=3.13"
+dependencies = [
+    "django~=5.2.1",
+    "dotenv~=0.9.9",
+]
+[dependency-groups]
 dev = [
-  "pyright~=1.1.400",
-  "ruff~=0.11.10",
   "pytest~=8.3.5",
   "pytest-cov~=6.1.1",
+]
+lint = [
+  "ruff~=0.11.10" 
+]
+check_types = [
+  "pyright~=1.1.400"
 ]
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
