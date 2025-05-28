@@ -1,15 +1,27 @@
 {% extends 'daily_news/base.html' %} 
 {% block content %} 
-  {% for post in posts %}
-    <article class="media content-section">
-      <div class="media-body">
-        <div class="article-metadata">
-          <a class="mr-2" href="#">{{ post.author }}</a>
-          <small class="text-muted">{{ post.date_posted }}</small>
-        </div>
-        <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
-      </div>
-    </article>
-  {% endfor %} 
-{% endblock content %}
+  <div class="mb-3">
+    <label for="InputTopic" class="form-label">Topic</label>
+    <input class="form-control" type="text" placeholder="Type here your topic" aria-label="default input example">
+  </div>
+  <label for="amount_news">Chose amount of news:</label>
+  <select name="amount_news" id="amount_news">
+    {% for num in numbers %}
+      <option value="{{ num }}">{{ num }}</option>
+    {% endfor %}
+  </select>
+  <div class="mb-3">
+   <p>Chose language</p>         
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="english_language" value="english_language">
+      <label class="english_language" for="english_language">'en'</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="polish_language" value="polish_language">
+      <label class="polish_language" for="polish_language">'pl'</label>
+    </div>
+  </div>
+  <div class="d-grid gap-2 d-md-block">
+    <button type="button" class="btn btn-outline-primary">Save</button>
+  </div>
+  {% endblock content %}

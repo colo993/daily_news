@@ -1,24 +1,9 @@
 from django.shortcuts import render
 
 
-posts = [
-	{
-		'author': 'Joe Doe',
-		'title': 'Blog post 1',
-		'content': 'First post content',
-		'date_posted': 'August 20, 2024',
-	},
-	{
-		'author': 'Joe Doe',
-		'title': 'Blog post 1',
-		'content': 'First post content',
-		'date_posted': 'August 20, 2024',
-	},
-]
-
-
 def home(request):
-	context = {'posts': posts}
+	numbers = list(range(1, 11))
+	context = {'numbers': numbers}
 	return render(request, 'daily_news/home.html', context=context)
 
 
