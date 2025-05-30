@@ -1,3 +1,4 @@
+from .models import Topic
 from django.shortcuts import render
 
 
@@ -9,3 +10,8 @@ def home(request):
 
 def about(request):
 	return render(request, 'daily_news/about.html', context={'title': 'About'})
+
+
+def topics(request):
+	context = {'topics': Topic.objects.all()}
+	return render(request, 'daily_news/topics.html', context=context)

@@ -1,0 +1,15 @@
+{% extends 'daily_news/base.html' %} 
+{% block content %} 
+{% for topic in topics %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <p1>Owner: </p1><a class="mr-2" href="#">{{ topic.owner }}</a>
+      <small class="text-muted"><p1>Amount of news: </p1>{{ topic.amount }}</small>
+    </div>
+    <h2><a class="article-title" href="#">{{ topic.topic_name }}</a></h2>
+    <p class="article-content"><p1>Language of news: </p1>{{ topic.language }}</p>
+  </div>
+</article>
+{% endfor %} 
+{% endblock content %}
