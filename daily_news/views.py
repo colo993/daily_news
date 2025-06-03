@@ -1,5 +1,6 @@
-from .models import Topic
 from django.shortcuts import render
+
+from .models import Topic
 
 
 def home(request):

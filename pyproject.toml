@@ -4,10 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = "~=3.13"
-dependencies = ["django~=5.2.1", "dotenv~=0.9.9"]
+dependencies = [
+  "crispy-bootstrap4~=2024.10",
+  "django~=5.2.1",
+  "django-crispy-forms~=2.4",
+  "dotenv~=0.9.9",
+  "ruff~=0.11.10",
+]
 [dependency-groups]
 dev = ["pytest~=8.3.5", "pytest-cov~=6.1.1"]
-lint = ["ruff~=0.11.10"]
+lint = ["ruff~=0.11.10", "prettier~=0.0.7"]
 check_types = ["pyright~=1.1.400"]
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -64,6 +70,7 @@ ignore = [
   "D103", # Missing docstring in public functions
   "D104", # Missing docstring in public package
   "D107", # Missing docstring in __init__
+  "D206", # Docstring should be indented with spaces, not tabs
   "D417", # Missing argument description in the docstring for {definition}: {name}
 ]
 
