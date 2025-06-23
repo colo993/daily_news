@@ -1,0 +1,101 @@
+[project]
+name = "daily-news"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "~=3.13"
+dependencies = [
+  "crispy-bootstrap4~=2024.10",
+  "django~=5.2.1",
+  "django-crispy-forms~=2.4",
+  "python-dotenv~=1.1.0",
+  "pillow~=11.2.1",
+  "ruff~=0.11.10",
+]
+[dependency-groups]
+dev = ["pytest~=8.3.5", "pytest-cov~=6.1.1"]
+lint = ["ruff~=0.11.10", "prettier~=0.0.7"]
+check_types = ["pyright~=1.1.400"]
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".git-rewrite",
+  ".hg",
+  ".ipynb_checkpoints",
+  ".mypy_cache",
+  ".nox",
+  ".pants.d",
+  ".pyenv",
+  ".pytest_cache",
+  ".pytype",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  ".vscode",
+  "__pycache__",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "site-packages",
+  "venv",
+]
+
+line-length = 99
+indent-width = 4
+show-fixes = true
+
+[tool.ruff.format]
+quote-style = "single"
+line-ending = "auto"
+indent-style = "tab"
+docstring-code-format = true
+docstring-code-line-length = 99
+
+[tool.ruff.lint]
+select = ["Q", "E", "F", "W", "UP", "B", "SIM", "I", "D"]
+unfixable = ["F401"] # Don't fix/remove unused imports
+allowed-confusables = ["-", "*"]
+ignore = [
+  "W191", # Indentation contains tabs
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D102", # Missing docstring in public method
+  "D103", # Missing docstring in public functions
+  "D104", # Missing docstring in public package
+  "D106", # Missing docstring in public nested class
+  "D105", # Missing docstring in magic method
+  "D107", # Missing docstring in __init__
+  "D206", # Docstring should be indented with spaces, not tabs
+  "D417", # Missing argument description in the docstring for {definition}: {name}
+]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+docstring-quotes = "double"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-import-conventions.aliases]
+pandas = "pd"
+numpy = "np"
+
+[tool.ruff.lint.flake8-boolean-trap]
+extend-allowed-calls = ["pydantic.Field"]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+single-line-exclusions = ["os", "json"]
+split-on-trailing-comma = false
+
+[tool.pyright]
+reportUnusedImport = false
+reportMissingTypeStubs = false
