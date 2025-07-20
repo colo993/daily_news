@@ -1,0 +1,26 @@
+<form action="{% url 'daily_news:keywords' topic.id %}" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend><h1>{{ topic.name }}</h1></legend>
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+    {% endif %} {% for keyword in topic.keywords.all %}
+    <p1>Keyword{{ forloop.counter }}: {{ keyword }}</p1><br />
+    {% endfor %}
+  </fieldset>
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default"
+      >Add new keyword</span
+    >
+    <input
+      type="text"
+      name="my_keyword"
+      class="form-control"
+      aria-label="my_keyword"
+      aria-describedby="inputGroup-sizing-sm"
+    />
+    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+      Add
+    </button>
+  </div>
+</form>
