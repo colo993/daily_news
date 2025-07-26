@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 from django.contrib.auth.models import User
 
 
@@ -22,7 +23,7 @@ class Topic(models.Model):
 
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='topics')
 	keywords = models.ManyToManyField(Keyword, related_name='topics_using_this_keyword')
-	created_at = models.DateTimeField(verbose_name='creation date', auto_now_add=True)
+	created_at = models.DateTimeField(verbose_name='creation date', default=timezone.now)
 
 	description = models.TextField(
 		blank=True,
@@ -38,5 +39,11 @@ class Topic(models.Model):
 	def __str__(self):  # pyright: ignore [reportIncompatibleMethodOverride]
 		return self.name
 
+	@admin.display(
+		boolean=True,
+		ordering='created_at',
+		description='Created recently?',
+	)
 	def was_created_recently(self):
-		return self.created_at >= timezone.now() - datetime.timedelta(days=1)
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.created_at <= now

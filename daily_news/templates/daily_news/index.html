@@ -1,3 +1,5 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'daily_news/style.css' %}">
 {% if latest_topic_list %}
   <ul>
   {% for topic in latest_topic_list %}

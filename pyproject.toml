@@ -11,6 +11,8 @@ dependencies = [
   "python-dotenv~=1.1.0",
   "pillow~=11.2.1",
   "ruff~=0.11.10",
+  "freezegun>=1.5.3",
+  "django-debug-toolbar>=5.2.0",
 ]
 [dependency-groups]
 dev = ["pytest~=8.3.5", "pytest-cov~=6.1.1"]
