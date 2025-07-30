@@ -1,15 +1,18 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from .models import Topic, Keyword
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views import generic
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.views import generic
+
+from .models import Keyword, Topic
 
 
-class IndexView(generic.ListView):
+class IndexView(LoginRequiredMixin, generic.ListView):
 	# here I am using generic view ListView to list all topics
 	# for detail I could use DetailView - but had to adjust keywords then in return statment - topic.pk ???
 	template_name = 'daily_news/index.html'
 	context_object_name = 'latest_topic_list'
+	redirect_field_name = '/bla/'
 
 	def get_queryset(self):
 		"""Return the last five published topics."""

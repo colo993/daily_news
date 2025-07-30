@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Topic, Keyword
+from .models import Keyword, Topic
 
 
 class TopicAdmin(admin.ModelAdmin):
@@ -8,6 +8,7 @@ class TopicAdmin(admin.ModelAdmin):
 	list_display = ['name', 'created_at', 'was_created_recently']
 	list_filter = ['created_at']
 	search_fields = ['name']
+
 
 class KeywordAdmin(admin.ModelAdmin):
 	search_fields = ['word']
