@@ -10,7 +10,7 @@ from .models import Keyword, Topic
 class IndexView(LoginRequiredMixin, generic.ListView):
 	# here I am using generic view ListView to list all topics
 	# for detail I could use DetailView - but had to adjust keywords then in return statment - topic.pk ???
-	template_name = 'daily_news/index.html'
+	template_name = 'news/index.html'
 	context_object_name = 'latest_topic_list'
 	redirect_field_name = '/bla/'
 
@@ -21,7 +21,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
 
 def detail(request, topic_id):
 	topic = get_object_or_404(Topic, pk=topic_id)
-	return render(request, 'daily_news/detail.html', {'topic': topic})
+	return render(request, 'news/detail.html', {'topic': topic})
 
 
 def keywords(request, topic_id):
@@ -37,10 +37,10 @@ def keywords(request, topic_id):
 	except:
 		return render(
 			request,
-			'daily_news/detail.html',
+			'news/detail.html',
 			{'topic': topic, 'error_message': "You didn't provide any keyword."},
 		)
-	return redirect('daily_news:detail', topic_id=topic.id)
+	return redirect('news:detail', topic_id=topic.id)
 
 
 def description(request, topic_id):

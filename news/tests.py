@@ -1,11 +1,12 @@
 import datetime
 
-from django.test import TestCase
-from django.utils import timezone
-from django.urls import reverse
-from .models import Topic
 from django.contrib.auth.models import User
+from django.test import TestCase
+from django.urls import reverse
+from django.utils import timezone
 from freezegun import freeze_time
+
+from .models import Topic
 
 
 class TopicModelTest(TestCase):
@@ -41,21 +42,21 @@ def create_topic(topic_name, days, user_name):
 class TopicIndexViewTest(TestCase):
 	def test_no_topics(self):
 		"""If no questions exist, an appropriate message is displayed."""
-		response = self.client.get(reverse('daily_news:index'))
+		response = self.client.get(reverse('news:index'))
 		self.assertEqual(response.status_code, 200)
 		self.assertContains(response, 'No topics are available')
 		self.assertQuerySetEqual(response.context['latest_topic_list'], [])
 
 	def test_past_topic(self):
 		topic = create_topic(topic_name='Past topic', days=-30, user_name='test_user')
-		response = self.client.get(reverse('daily_news:index'))
+		response = self.client.get(reverse('news:index'))
 		self.assertQuerySetEqual(
 			response.context['latest_topic_list'],
 			[topic],
 		)
 
 	def test_future_topic(self):
-		response = self.client.get(reverse('daily_news:index'))
+		response = self.client.get(reverse('news:index'))
 		self.assertContains(response, 'No topics are available')
 		self.assertQuerySetEqual(
 			response.context['latest_topic_list'],
@@ -65,7 +66,7 @@ class TopicIndexViewTest(TestCase):
 	def test_future_question_and_past_question(self):
 		topic = create_topic(topic_name='Past topic', days=-30, user_name='test_user1')
 		create_topic(topic_name='Future topic', days=30, user_name='test_user2')
-		response = self.client.get(reverse('daily_news:index'))
+		response = self.client.get(reverse('news:index'))
 		self.assertQuerySetEqual(
 			response.context['latest_topic_list'],
 			[topic],
@@ -75,7 +76,7 @@ class TopicIndexViewTest(TestCase):
 		"""The questions index page may display multiple questions."""
 		topic1 = create_topic(topic_name='Past topic 1.', days=-30, user_name='test_user1')
 		topic2 = create_topic(topic_name='Past topic 2.', days=-5, user_name='test_user2')
-		response = self.client.get(reverse('daily_news:index'))
+		response = self.client.get(reverse('news:index'))
 		self.assertQuerySetEqual(
 			response.context['latest_topic_list'],
 			[topic2, topic1],

@@ -1,4 +1,4 @@
-<form action="{% url 'daily_news:keywords' topic.id %}" method="post">
+<form action="{% url 'news:keywords' topic.id %}" method="post">
   {% csrf_token %}
   <fieldset>
     <legend><h1>{{ topic.name }}</h1></legend>

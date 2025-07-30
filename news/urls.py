@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = 'daily_news'
+app_name = 'news'
 urlpatterns = [
 	path('', views.IndexView.as_view(), name='index'),
 	path('<int:topic_id>/', views.detail, name='detail'),

@@ -1,9 +1,9 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'daily_news/style.css' %}">
+<link rel="stylesheet" href="{% static 'news/style.css' %}">
 {% if latest_topic_list %}
   <ul>
   {% for topic in latest_topic_list %}
-    <li><a href='{% url 'daily_news:detail' topic.id %}'>{{ topic.name }}</a></li>
+    <li><a href='{% url 'news:detail' topic.id %}'>{{ topic.name }}</a></li>
   {% endfor %}
   </ul>
 {% else %}
