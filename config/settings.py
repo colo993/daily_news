@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-TESTING = 'test' in sys.argv or 'PYTEST_VERSION' in os.environ
+TESTING = 'tests' in sys.argv or 'PYTEST_VERSION' in os.environ
 if not TESTING:
 	INSTALLED_APPS = [
 		'news.apps.NewsConfig',
