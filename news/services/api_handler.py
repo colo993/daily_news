@@ -1,4 +1,4 @@
-import requests
+import httpx
 
 
 class ApiHandler:
@@ -7,7 +7,7 @@ class ApiHandler:
 
 	def fetch_data(self):
 		try:
-			response = requests.get(self.url)
+			response = httpx.get(self.url)
 			return response.json()
-		except requests.exceptions.RequestException as e:
+		except httpx.RequestError as e:
 			raise ValueError(f'Api request failed: {e}') from e

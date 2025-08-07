@@ -23,7 +23,7 @@ class TestApiHandler:
 		mock_response.raise_for_status.return_value = None
 
 		get_mock = mocker.patch(
-			'news.services.api_handler.requests.get', return_value=mock_response
+			'news.services.api_handler.httpx.get', return_value=mock_response
 		)  # ignore 501
 		handler = ApiHandler(url='https://news.example.com')
 
